@@ -32,7 +32,7 @@ export default function Home() {
           <img
             src="/images/landing/intro.png"
             alt="Picture of the author"
-            className="h-[600px] w-[600px]"
+            className="h-[400px] w-full tablet:h-[600px] tablet:w-[600px]"
           />
         </div>
         <div className="flex-1/2 flex justify-start  w-full h-fit tablet:h-[600px] mt-4  items-start tablet:items-center ">
@@ -40,14 +40,14 @@ export default function Home() {
             <p className="font-Prosto text-3xl tablet:text-5xl pl-5 pr-5 tablet:leading-[60px]">
               Every day is unique, just like our tea
             </p>
-            <p className="text-xl pl-5 pr-5 font-thin leading-9">
+            <p className="text-xl pl-5 pr-5  leading-9">
               Lorem ipsum dolor sit amet consectetur. Orci nibh nullam risus
               adipiscing odio. Neque lacus nibh eros in. Lorem ipsum dolor sit
               amet consectetur. Orci nibh nullam risus adipiscing odio. Neque
               lacus nibh eros in.
             </p>
             <div className="p-5">
-              <button className="tablet:w-[350px] w-[150px] h-14 text-[18px] font-thin border-2  border-black hover:bg-black hover:text-white">
+              <button className="tablet:w-[350px] w-[150px] h-14 text-[18px] border-2  border-black hover:bg-black hover:text-white">
                 browes teas
               </button>
             </div>
@@ -160,6 +160,36 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="w-full h-full flex  tablet:flex-row flex-col-reverse mt-[60px] tablet:mt-[108px] pb-20">
+        <div className="flex-1/2 flex   w-full h-fit tablet:h-[600px] mt-4 tablet:mt-0  justify-end  tablet:items-center ">
+          <div className="w-[600px] h-fit  tablet:h-[400px]  flex flex-col justify-evenly  ">
+            <p className="font-Prosto text-3xl tablet:text-5xl pl-5 pr-5 tablet:leading-[60px] mt-5 tablet:mt-0">
+            FOR WHOLESALERS
+            </p>
+            <p className="text-xl pl-5 pr-5  leading-9">
+            We offer loose tea leaves of the best quality for your business. With a choice of more than 450 different kinds of loose tea, we can make a sophisticated selection that fits exactly in your kind of establishment. 
+            </p>
+            <div className="p-5">
+              <button className="tablet:w-[350px] w-[300px] h-14 text-[18px] border-2  border-black hover:bg-black hover:text-white uppercase">
+              get A free consultation
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1/2 flex justify-end w-full h-full ">
+          <img
+            src="/images/landing/wholeseller.png"
+            alt="Picture of the author"
+            className="h-[600px] w-[600px] hidden tablet:block"
+          />
+          <img
+            src="/images/landing/mobileware.png"
+            alt="Picture of the author"
+            className="h-[400px] w-full block tablet:hidden"
+          />
         </div>
       </div>
     </>
