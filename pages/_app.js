@@ -10,6 +10,7 @@ export default function App({ Component, pageProps }) {
       <title>Tea Commerce Website</title>
       <style>
   @import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;600&display=swap');
 </style>
     </Head>
     <Header/>

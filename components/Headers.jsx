@@ -20,13 +20,7 @@ function Headers() {
   };
   return (
     <>
-    {/* "flex" : "hidden"
-        } justify-center items-center w-full h-[108px] */}
-      <div
-
-        className="flex justify-center items-center w-full h-[108px]"
-      >
-      {/*w-[95%] h-[48px] flex items-center  */}
+      <div className="flex fixed  top-0 bg-white justify-center items-center w-full h-[60px] tablet:h-[108px]">
         <div className={`${isHeader ? "flex":"none"} w-[95%] h-[48px]  items-center `}>
           <div className=" flex-[20%]  w-full h-full flex justify-center items-center ">
             <Link href="/">
@@ -98,9 +92,9 @@ function Headers() {
       <div
         className={`${
           isMenuOpen ? "flex" : "hidden"
-        } z-[1035] border-2  absolute top-0 right-0 w-[350px] h-[100%] flex justify-center items-center bg-white  transition-right duration-800 ease-in`}
+        } z-[1035] border-2  fixed top-0 right-0 w-[350px] h-[100%] flex justify-center items-center bg-white  transition-right duration-800 ease-in`}
       >
-        <div className=" w-[95%] h-full flex justify-center items-center flex-col">
+        <div className=" w-[95%] h-full  flex justify-center items-center flex-col">
           <div className="w-[95%] h-full ">
             <div className="w-full h-[60px]  flex items-center justify-end">
               <button onClick={isClosed}>
