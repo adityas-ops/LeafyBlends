@@ -35,7 +35,7 @@ function Headers() {
           <div className="flex-[80%] w-full h-full  hidden tablet:flex  ">
             <div className="flex-[70%]  flex justify-evenly items-center">
               <Link
-                href="/collection"
+                href="/collections"
                 className=" text-sm cursor-pointer hover:text-Outline"
               >
                 TEA COLLECTIONS
