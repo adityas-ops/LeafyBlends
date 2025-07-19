@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Allerg() {
+function Allerg({ selectedItems = [], onItemChange }) {
     const allerg = ["Lactos-free","Gluten-free","Nuts-free","Soy-free"]
   return (
     <>
@@ -8,10 +8,14 @@ function Allerg() {
         {allerg.map((items, index) => {
           return (
             <div
-              id={index}
+              key={index}
               className="w-full h-full flex justify-start items-center"
             >
-              <input type="checkbox" />
+              <input 
+                type="checkbox" 
+                checked={selectedItems.includes(items)}
+                onChange={() => onItemChange && onItemChange(items)}
+              />
               <label className="pl-2">{items}</label>
             </div>
           );

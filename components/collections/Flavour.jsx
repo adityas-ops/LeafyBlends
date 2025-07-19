@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Flavour() {
+function Flavour({ selectedItems = [], onItemChange }) {
 const flavours = ["Spicy","Sweet","Citrus","Smooth","Fruity","Floral","Grassy","Minty","Bitter","Creamy"]
   return (
     <>
@@ -8,10 +8,14 @@ const flavours = ["Spicy","Sweet","Citrus","Smooth","Fruity","Floral","Grassy","
         {flavours.map((items, index) => {
           return (
             <div
-              id={index}
+              key={index}
               className="w-full h-full flex justify-start items-center"
             >
-              <input type="checkbox" />
+              <input 
+                type="checkbox" 
+                checked={selectedItems.includes(items)}
+                onChange={() => onItemChange && onItemChange(items)}
+              />
               <label className="pl-2">{items}</label>
             </div>
           );
