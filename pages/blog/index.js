@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { FiCalendar, FiUser, FiArrowRight } from "react-icons/fi";
 
 function Blog() {
@@ -76,10 +77,12 @@ function Blog() {
       <div className="w-full h-full mt-[60px] tablet:mt-[108px]">
         {/* banner */}
         <div className="w-full h-[400px] relative">
-          <img
+          <Image
             src="/images/landing/allabouttea.png"
             alt="Tea Blog"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white">
@@ -135,11 +138,13 @@ function Blog() {
                     <FiArrowRight className="ml-2" />
                   </button>
                 </div>
-                <div>
-                  <img
+                <div className="relative w-full h-64">
+                  <Image
                     src="/images/landing/steeptea.png"
                     alt="Tea Brewing"
-                    className="w-full h-64 object-cover rounded-lg"
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
               </div>
@@ -150,11 +155,15 @@ function Blog() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.slice(1).map((post) => (
               <article key={post.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
+                <div className="relative w-full h-48">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-blue-600 font-semibold uppercase tracking-wide">

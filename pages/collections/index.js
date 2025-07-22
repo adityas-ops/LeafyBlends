@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import { FiFilter, FiX } from "react-icons/fi";
 import Accordion from "@/components/collections/Accordion";
 import Boxes from "@/components/collections/Boxes";
 import Origins from "@/components/collections/Origins";
@@ -21,6 +23,7 @@ function collections() {
   const [selectedQualities, setSelectedQualities] = useState([]);
   const [selectedCaffeine, setSelectedCaffeine] = useState([]);
   const [selectedAllergens, setSelectedAllergens] = useState([]);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   
   const teaProducts = [
     {
@@ -200,6 +203,14 @@ function collections() {
     setSelectedAllergens([]);
   };
 
+  const handleApplyFilters = () => {
+    setShowMobileFilters(false);
+  };
+
+  const handleCancelFilters = () => {
+    setShowMobileFilters(false);
+  };
+
   // Filtered products
   const filteredProducts = useMemo(() => {
     return teaProducts.filter(product => {
@@ -225,16 +236,24 @@ function collections() {
       <div className="w-full h-full mt-[60px] tablet:mt-[108px]">
         {/* banner */}
         <div className="w-full h-[300px]">
-          <img
-            src="images/collection/intro.png"
-            alt=""
-            className="w-full h-full object-cover hidden tablet:block"
-          />
-          <img
-            src="images/collection/intro-mobile.png"
-            alt=""
-            className="w-full h-full object-cover tablet:hidden"
-          />
+          <div className="relative w-full h-full hidden tablet:block">
+            <Image
+              src="/images/collection/intro.png"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          <div className="relative w-full h-full tablet:hidden">
+            <Image
+              src="/images/collection/intro-mobile.png"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
         </div>
         <div className="w-full h-full pr-10 pl-10 mt-6">
           {/*  breadcrumbs  */}
@@ -255,8 +274,25 @@ function collections() {
             </div>
           )}
           
+          {/* Mobile Filter Button */}
+          <div className="tablet:hidden w-full mb-6">
+            <button
+              onClick={() => setShowMobileFilters(true)}
+              className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <FiFilter />
+              Filters
+              {hasActiveFilters && (
+                <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                  {selectedCollections.length + selectedOrigins.length + selectedFlavours.length + selectedQualities.length + selectedCaffeine.length + selectedAllergens.length}
+                </span>
+              )}
+            </button>
+          </div>
+
           {/* main page start  */}
           <div className="w-full h-full flex">
+            {/* Desktop Filters */}
             <div className="flex-[25%] h-full mb-10 hidden tablet:flex justify-center">
               <div className="bg-white w-[80%] ">
                 <Accordion 
@@ -315,26 +351,120 @@ function collections() {
                 />
               </div>
             </div>
-            <div className="tablet:flex-[75%] flex-[100%] flex justify-center ">
-              <div className="grid grid-cols-2 w-[95%] h-full tablet:grid-cols-3 gap-4">
-                {filteredProducts.map((product) => (
-                  <div key={product.id} className="h-full w-full flex flex-col justify-center items-center mb-10 cursor-pointer hover:scale-105 transition-transform">
-                    <img
-                      alt={product.name}
-                      src={product.image}
-                      className="object-cover w-[400px]"
-                    />
-                    <p className="font-thin text-sm tablet:text-base">{product.name}</p>
-                    <p className="font-thin text-sm tablet:text-base">{product.description}</p>
-                    <p className="text-sm tablet:text-base">
-                      <span className="font-bold">€{product.price}</span> / 50 g
-                    </p>
+
+            {/* Mobile Filter Modal */}
+            {showMobileFilters && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-50 tablet:hidden">
+                <div className="fixed inset-y-0 left-0 w-80 bg-white overflow-y-auto">
+                  <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 className="text-lg font-semibold">Filters</h3>
                     <button
-                      onClick={() => addToCart(product)}
-                      className="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
+                      onClick={handleCancelFilters}
+                      className="text-gray-500 hover:text-gray-700"
                     >
-                      Add to Cart
+                      <FiX className="text-xl" />
                     </button>
+                  </div>
+                  <div className="p-4">
+                    <Accordion 
+                      title="COLLECTIONS" 
+                      content={
+                        <Boxes 
+                          selectedItems={selectedCollections}
+                          onItemChange={handleCollectionChange}
+                        />
+                      } 
+                    />
+                    <Accordion 
+                      title="ORIGINS" 
+                      content={
+                        <Origins 
+                          selectedItems={selectedOrigins}
+                          onItemChange={handleOriginChange}
+                        />
+                      } 
+                    />
+                    <Accordion 
+                      title="FLAVORS" 
+                      content={
+                        <Flavour 
+                          selectedItems={selectedFlavours}
+                          onItemChange={handleFlavourChange}
+                        />
+                      } 
+                    />
+                    <Accordion 
+                      title="QUALITIES" 
+                      content={
+                        <Quality 
+                          selectedItems={selectedQualities}
+                          onItemChange={handleQualityChange}
+                        />
+                      } 
+                    />
+                    <Accordion 
+                      title="CAFFEINE" 
+                      content={
+                        <Caffein 
+                          selectedItems={selectedCaffeine}
+                          onItemChange={handleCaffeineChange}
+                        />
+                      } 
+                    />
+                    <Accordion 
+                      title="ALERGENS" 
+                      content={
+                        <Allerg 
+                          selectedItems={selectedAllergens}
+                          onItemChange={handleAllergenChange}
+                        />
+                      } 
+                    />
+                    <div className="flex gap-2 mt-6">
+                      <button
+                        onClick={handleApplyFilters}
+                        className="flex-1 bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-colors"
+                      >
+                        Apply Filters
+                      </button>
+                      <button
+                        onClick={clearAllFilters}
+                        className="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        Clear All
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="tablet:flex-[75%] flex-[100%] flex justify-center ">
+              <div className="grid grid-cols-2 w-[95%] tablet:grid-cols-3 gap-6">
+                {filteredProducts.map((product) => (
+                  <div key={product.id} className="flex flex-col items-center justify-start p-4 cursor-pointer hover:scale-105 transition-transform bg-white rounded-lg shadow-sm">
+                    <div className="relative w-full h-[250px] tablet:h-[300px] mb-4">
+                      <Image
+                        alt={product.name}
+                        src={product.image}
+                        fill
+                        className="object-cover rounded-lg"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 400px"
+                      />
+                    </div>
+                    <div className="text-center w-full">
+                      <p className="font-thin text-sm tablet:text-base mb-2">{product.name}</p>
+                      <p className="font-thin text-sm tablet:text-base mb-2 text-gray-600">{product.description}</p>
+                      <p className="text-sm tablet:text-base mb-4">
+                        <span className="font-bold">€{product.price}</span> / 50 g
+                      </p>
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

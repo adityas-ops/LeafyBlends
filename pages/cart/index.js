@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { FiMinus, FiPlus, FiArrowLeft } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
@@ -82,11 +83,15 @@ function Cart() {
             <div className="space-y-4">
               {cart.map((item) => (
                 <div key={item.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-20 h-20 object-cover rounded"
-                  />
+                  <div className="relative w-20 h-20">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover rounded"
+                      sizes="80px"
+                    />
+                  </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg">{item.name}</h3>
                     <p className="text-gray-600 text-sm">{item.description}</p>

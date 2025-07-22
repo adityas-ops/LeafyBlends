@@ -14,15 +14,15 @@ function Headers() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeader, setHeader] = useState(true);
   const [showCartInMobile, setShowCartInMobile] = useState(false);
-  const { 
-    cart, 
-    toggleCart, 
-    getTotalItems, 
-    removeFromCart, 
-    updateQuantity, 
-    getTotalPrice 
+  const {
+    cart,
+    toggleCart,
+    getTotalItems,
+    removeFromCart,
+    updateQuantity,
+    getTotalPrice,
   } = useCartStore();
-  
+
   const isOpened = () => {
     setIsMenuOpen(true);
     setHeader(false);
@@ -36,11 +36,15 @@ function Headers() {
   const toggleMobileCart = () => {
     setShowCartInMobile(!showCartInMobile);
   };
-  
+
   return (
     <>
-      <div className="flex fixed  top-0 bg-white justify-center items-center w-full h-[60px] tablet:h-[108px]">
-        <div className={`${isHeader ? "flex":"none"} w-[95%] h-[48px]  items-center `}>
+      <div className="flex z-50 fixed  top-0 bg-white justify-center items-center w-full h-[60px] tablet:h-[108px]">
+        <div
+          className={`${
+            isHeader ? "flex" : "none"
+          } w-[95%] h-[48px]  items-center `}
+        >
           <div className=" flex-[20%]  w-full h-full flex justify-center items-center ">
             <Link href="/">
               <Image
@@ -55,52 +59,40 @@ function Headers() {
             <div className="flex-[70%]  flex justify-evenly items-center">
               <Link
                 href="/collections"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
               >
                 TEA COLLECTIONS
               </Link>
               <Link
                 href="/accessories"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
               >
                 ACCESSORIES
               </Link>
               <Link
                 href="/blog"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
               >
                 BLOG
               </Link>
               <Link
                 href="/contact"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
               >
                 CONTACT US
               </Link>
             </div>
             <div className="flex-[30%] flex justify-center items-center h-full ">
-              <div className="flex justify-evenly w-[80%]  h-full items-center">
-                <Link
-                  href="/"
-                  className=" text-sm cursor-pointer hover:text-Outline"
-                >
-                  <BsSearch className="text-[18px]" />
-                </Link>
-                <Link
-                  href="/"
-                  className=" text-sm cursor-pointer hover:text-Outline"
-                >
-                  <BsFillPersonFill className="text-2xl" />
-                </Link>
+              <div className="flex justify-end w-[80%]  h-full items-center">
                 <div className="relative">
                   <button
                     onClick={toggleCart}
-                    className=" text-sm cursor-pointer hover:text-Outline"
+                    className="text-sm cursor-pointer hover:text-Outline"
                   >
                     <IoBagHandleOutline className="text-2xl" />
                   </button>
                   <Link href="/cart">
-                    <button className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <button className="absolute flex items-center justify-center w-5 h-5 text-xs text-white transition-colors bg-red-500 rounded-full -top-2 -right-2 hover:bg-red-600">
                       {getTotalItems()}
                     </button>
                   </Link>
@@ -126,41 +118,13 @@ function Headers() {
               <RxCross2 className="text-3xl" />
             </button>
           </div>
-          <div className="relative">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-              <svg
-                className="h-8 w-8 ml-5 fill-current text-gray-500"
-                viewBox="0 0 16 16"
-              >
-                <path d="M6.5 12a5.5 5.5 0 1 1 3.914-1.622l3.956 3.956-.88.88-3.956-3.956A5.47 5.47 0 0 1 6.5 12zm0-10a4.5 4.5 0 1 0 4.5 4.5A4.505 4.505 0 0 0 6.5 2z" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              placeholder="SEARCH PRODUCTS"
-              className="  py-2 pl-8 pr-4 w-full border-2 h-[60px]  text-center"
-            />
-          </div>
-          <div className="mt-4 w-full h-[60px] flex justify-center items-center ">
-            <div className="flex-[10%]">
-              <BsFillPersonFill className="text-4xl ml-2" />
-            </div>
-            <div className="flex-[90%] flex justify-start flex-col items-center ml-2 ">
-              <div className=" w-full text-[14px] text-start font-regular  flex justify-start ">
-                USER PROFILE
-              </div>
-              <div className="w-full text-[12px] font-light text-start flex justify-start text-Outline ">
-                {" "}
-                We Know You as a guest user
-              </div>
-            </div>
-          </div>
-          <button 
+
+          <button
             onClick={toggleMobileCart}
             className="mt-2 w-full h-[60px] flex justify-center items-center cursor-pointer hover:bg-gray-50 rounded"
           >
             <div className="flex-[10%]">
-              <IoBagHandleOutline className="text-4xl ml-2" />
+              <IoBagHandleOutline className="ml-2 text-4xl" />
             </div>
             <div className="flex-[90%] flex justify-start flex-col items-center ml-2 ">
               <div className=" w-full text-[14px] text-start font-regular  flex justify-start ">
@@ -172,52 +136,69 @@ function Headers() {
             </div>
           </button>
           {/* horizotal line start */}
-          <hr className="text-black mt-4" />
+          <hr className="mt-4 text-black" />
           {/* horizotal line end */}
-          
+
           {/* Mobile Cart Section */}
           {showCartInMobile && (
             <div className="w-full mt-4 mb-4">
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h3 className="font-semibold text-lg mb-3">Your Cart ({getTotalItems()} items)</h3>
-                
+              <div className="p-4 rounded-lg bg-gray-50">
+                <h3 className="mb-3 text-lg font-semibold">
+                  Your Cart ({getTotalItems()} items)
+                </h3>
+
                 {cart.length === 0 ? (
-                  <div className="text-center py-4 text-gray-500">
+                  <div className="py-4 text-center text-gray-500">
                     <p>Your cart is empty</p>
                     <p className="text-sm">Add some tea to get started!</p>
                   </div>
                 ) : (
-                  <div className="space-y-3 max-h-60 overflow-y-auto">
+                  <div className="space-y-3 overflow-y-auto max-h-60">
                     {cart.map((item) => (
-                      <div key={item.id} className="flex items-center space-x-3 p-3 bg-white rounded border">
-                        <img
+                      <div
+                        key={item.id}
+                        className="flex items-center p-3 space-x-3 bg-white border rounded"
+                      >
+                        <Image
                           src={item.image}
                           alt={item.name}
-                          className="w-12 h-12 object-cover rounded"
+                          height={48}
+                          width={48}
+                          className="object-cover w-12 h-12 rounded"
                         />
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-sm truncate">{item.name}</h4>
-                          <p className="text-xs text-gray-600 truncate">{item.description}</p>
+                          <h4 className="text-sm font-medium truncate">
+                            {item.name}
+                          </h4>
+                          <p className="text-xs text-gray-600 truncate">
+                            {item.description}
+                          </p>
                           <p className="text-sm font-semibold">€{item.price}</p>
                         </div>
                         <div className="flex flex-col items-end space-y-1">
                           <button
                             onClick={() => removeFromCart(item.id)}
-                            className="text-red-500 hover:text-red-700 text-xs"
+                            className="text-xs text-red-500 hover:text-red-700"
                           >
                             <RxCross2 className="text-sm" />
                           </button>
                           <div className="flex items-center space-x-1">
                             <button
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="p-1 hover:bg-gray-100 rounded text-xs"
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity - 1)
+                              }
+                              className="p-1 text-xs rounded hover:bg-gray-100"
                             >
                               <FiMinus />
                             </button>
-                            <span className="w-6 text-center text-sm font-semibold">{item.quantity}</span>
+                            <span className="w-6 text-sm font-semibold text-center">
+                              {item.quantity}
+                            </span>
                             <button
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="p-1 hover:bg-gray-100 rounded text-xs"
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity + 1)
+                              }
+                              className="p-1 text-xs rounded hover:bg-gray-100"
                             >
                               <FiPlus />
                             </button>
@@ -227,17 +208,19 @@ function Headers() {
                     ))}
                   </div>
                 )}
-                
+
                 {cart.length > 0 && (
-                  <div className="mt-4 pt-3 border-t">
-                    <div className="flex justify-between items-center mb-3">
+                  <div className="pt-3 mt-4 border-t">
+                    <div className="flex items-center justify-between mb-3">
                       <span className="font-semibold">Total:</span>
-                      <span className="font-semibold">€{getTotalPrice().toFixed(2)}</span>
+                      <span className="font-semibold">
+                        €{getTotalPrice().toFixed(2)}
+                      </span>
                     </div>
                     <Link href="/cart">
-                      <button 
+                      <button
                         onClick={isClosed}
-                        className="w-full bg-black text-white py-2 px-4 rounded text-sm hover:bg-gray-800 transition-colors"
+                        className="w-full px-4 py-2 text-sm text-white transition-colors bg-black rounded hover:bg-gray-800"
                       >
                         View Full Cart
                       </button>
@@ -247,34 +230,34 @@ function Headers() {
               </div>
             </div>
           )}
-          
+
           {/* Navigation Menu */}
           <div className="flex flex-col justify-center items-center w-full h-[150px] ">
             <div className="flex flex-col justify-evenly w-[90%] h-[150px] ">
               <Link
                 href="/collections"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
                 onClick={isClosed}
               >
                 TEA COLLECTIONS
               </Link>
               <Link
                 href="/accessories"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
                 onClick={isClosed}
               >
                 ACCESSORIES
               </Link>
               <Link
                 href="/blog"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
                 onClick={isClosed}
               >
                 BLOG
               </Link>
               <Link
                 href="/contact"
-                className=" text-sm cursor-pointer hover:text-Outline"
+                className="text-sm cursor-pointer hover:text-Outline"
                 onClick={isClosed}
               >
                 CONTACT US
@@ -282,17 +265,11 @@ function Headers() {
             </div>
           </div>
           <div className="mt-8">
-            <div className="h-[70px] w-full flex justify-start items-center">
-              <Image
-                src="/images/logo.png"
-                alt="Picture of the author"
-                width={150}
-                height={150}
-                className="ml-4"
-              />
-            </div>
             <div className="text-sm p-4 text-[14px] leading-6 font-light text-black-50">
-              We offer loose tea leaves of the best quality for your business. With a choice of more than 450 different kinds of loose tea, we can make a sophisticated selection that fits exactly in your kind of establishment. 
+              We offer loose tea leaves of the best quality for your business.
+              With a choice of more than 450 different kinds of loose tea, we
+              can make a sophisticated selection that fits exactly in your kind
+              of establishment.
             </div>
             <div className="text-sm p-4 text-[14px] leading-6 font-light text-Outline">
               ALL RIGHTS RESEREVED BY Brand Name Company

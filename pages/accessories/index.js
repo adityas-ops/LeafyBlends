@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import useCartStore from "../../store/cartStore";
 
 function Accessories() {
@@ -64,11 +65,13 @@ function Accessories() {
     <>
       <div className="w-full h-full mt-[60px] tablet:mt-[108px]">
         {/* banner */}
-        <div className="w-full h-[300px]">
-          <img
+        <div className="w-full h-[300px] relative">
+          <Image
             src="/images/landing/teaware.png"
             alt="Tea Accessories"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
           />
         </div>
         
@@ -104,11 +107,15 @@ function Accessories() {
             <div className="grid grid-cols-1 w-[95%] h-full tablet:grid-cols-2 lg:grid-cols-3 gap-6">
               {accessories.map((product) => (
                 <div key={product.id} className="h-full w-full flex flex-col justify-center items-center mb-10 cursor-pointer hover:scale-105 transition-transform">
-                  <img
-                    alt={product.name}
-                    src={product.image}
-                    className="object-cover w-full h-64 rounded-lg"
-                  />
+                  <div className="relative w-full h-64">
+                    <Image
+                      alt={product.name}
+                      src={product.image}
+                      fill
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
                   <div className="text-center mt-4">
                     <p className="text-xs text-gray-500 uppercase tracking-wide">{product.category}</p>
                     <p className="font-semibold text-lg tablet:text-xl mt-1">{product.name}</p>

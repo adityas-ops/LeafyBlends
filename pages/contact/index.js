@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { FiMail, FiPhone, FiMapPin, FiClock, FiSend } from "react-icons/fi";
 
 function Contact() {
@@ -60,10 +61,12 @@ function Contact() {
       <div className="w-full h-full mt-[60px] tablet:mt-[108px]">
         {/* banner */}
         <div className="w-full h-[300px] relative">
-          <img
+          <Image
             src="/images/landing/brand.png"
             alt="Contact Us"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white">
