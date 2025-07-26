@@ -19,6 +19,10 @@ function Cart() {
   } = useCartStore();
 
   const handleCheckout = () => {
+    console.log('Checkout button clicked');
+    console.log('Current cart:', cart);
+    console.log('Router:', router);
+    
     // Navigate to checkout page
     router.push('/checkout');
   };
@@ -96,7 +100,7 @@ function Cart() {
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg">{item.name}</h3>
                     <p className="text-gray-600 text-sm">{item.description}</p>
-                    <p className="text-lg font-semibold mt-1">€{item.price}</p>
+                    <p className="text-lg font-semibold mt-1">₹{item.price}</p>
                   </div>
                   <div className="flex flex-col items-end space-y-2">
                     <button
@@ -130,7 +134,7 @@ function Cart() {
                         <FiPlus className="text-sm" />
                       </button>
                     </div>
-                    <p className="text-lg font-bold">€{(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="text-lg font-bold">₹{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>
               ))}
@@ -145,7 +149,7 @@ function Cart() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
                   <span>Subtotal ({getTotalItems()} items)</span>
-                  <span>€{getTotalPrice().toFixed(2)}</span>
+                  <span>₹{getTotalPrice().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
@@ -153,25 +157,26 @@ function Cart() {
                 </div>
                 <div className="flex justify-between">
                   <span>Tax</span>
-                  <span>€{(getTotalPrice() * 0.21).toFixed(2)}</span>
+                  <span>₹{(getTotalPrice() * 0.18).toFixed(2)}</span>
                 </div>
                 <hr className="my-3" />
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>€{(getTotalPrice() * 1.21).toFixed(2)}</span>
+                  <span>₹{(getTotalPrice() * 1.18).toFixed(2)}</span>
                 </div>
               </div>
 
-              <button
-                onClick={handleCheckout}
-                className="w-full bg-black text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
-              >
-                Proceed to Checkout
-              </button>
+              <Link href="/checkout">
+                <button
+                  className="w-full bg-black text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
+                >
+                  Proceed to Checkout
+                </button>
+              </Link>
 
               <div className="mt-4 text-center">
                 <p className="text-sm text-gray-600">
-                  Free shipping on orders over €50
+                  Free shipping on orders over ₹500
                 </p>
               </div>
             </div>

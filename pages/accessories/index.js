@@ -121,7 +121,7 @@ function Accessories() {
                     <p className="text-xs tracking-wide text-gray-500 uppercase">{product.category}</p>
                     <p className="mt-1 text-lg font-semibold tablet:text-xl">{product.name}</p>
                     <p className="mt-1 text-sm font-thin text-gray-600 tablet:text-base">{product.description}</p>
-                    <p className="mt-2 text-lg font-bold tablet:text-xl">€{product.price}</p>
+                    <p className="mt-2 text-lg font-bold tablet:text-xl">₹{product.price}</p>
                     <button
                       onClick={() => {
                         addToCart(product);

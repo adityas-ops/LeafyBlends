@@ -4,8 +4,10 @@ import { RxCross2 } from 'react-icons/rx';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import useCartStore from '../store/cartStore';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
+  const router = useRouter();
   const { 
     cart, 
     isCartOpen, 
@@ -15,6 +17,11 @@ const Cart = () => {
     getTotalItems, 
     getTotalPrice 
   } = useCartStore();
+
+  const handleProceedToCheckout = () => {
+    toggleCart(); // Close the cart sidebar
+    router.push('/cart'); // Navigate to the cart page
+  };
 
   if (!isCartOpen) return null;
 
@@ -68,7 +75,7 @@ const Cart = () => {
                       <div className="flex-1">
                         <h3 className="font-medium">{item.name}</h3>
                         <p className="text-sm text-gray-600">{item.description}</p>
-                        <p className="text-sm font-semibold">€{item.price}</p>
+                        <p className="text-sm font-semibold">₹{item.price}</p>
                       </div>
                       <div className="flex flex-col items-end space-y-2">
                         <button
@@ -104,9 +111,12 @@ const Cart = () => {
               <div className="p-4 border-t">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-lg font-semibold">Total:</span>
-                  <span className="text-lg font-semibold">€{getTotalPrice().toFixed(2)}</span>
+                  <span className="text-lg font-semibold">₹{getTotalPrice().toFixed(2)}</span>
                 </div>
-                <button className="w-full px-4 py-3 text-white transition-colors bg-black rounded-lg hover:bg-gray-800">
+                <button 
+                  onClick={handleProceedToCheckout}
+                  className="w-full px-4 py-3 text-white transition-colors bg-black rounded-lg hover:bg-gray-800"
+                >
                   Proceed to Checkout
                 </button>
               </div>

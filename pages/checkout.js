@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 const COUNTRIES = [
   { name: 'India', states: ['Delhi', 'Maharashtra', 'Karnataka'] },
@@ -44,6 +45,7 @@ async function saveUserInfo(data) {
     tx.oncomplete = resolve;
     tx.onerror = reject;
   });
+  
 }
 
 async function getUserInfo() {
@@ -107,51 +109,52 @@ export default function Checkout() {
     e.preventDefault();
     await saveUserInfo(form);
     setSaved(true);
+    toast.success('Address saved successfully')
     setTimeout(() => setSaved(false), 1500);
-    // router.push('/next-step'); // Uncomment for next step navigation
+    router.push('/payment');
   };
 
   if (loading) return <div className="p-8">Loading...</div>;
 
   return (
-    <div className="max-w-xl mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-6">Checkout - User Information</h1>
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
+    <div className="max-w-xl p-8 mx-auto">
+      <h1 className="mb-6 text-2xl font-bold">Checkout - User Information</h1>
+      <form onSubmit={handleSubmit} className="p-6 space-y-4 bg-white rounded shadow">
         <div>
           <label className="block mb-1 font-semibold">Name</label>
-          <input name="name" value={form.name} onChange={handleChange} required className="w-full border px-3 py-2 rounded" />
+          <input name="name" value={form.name} onChange={handleChange} required className="w-full px-3 py-2 border rounded" />
         </div>
         <div>
           <label className="block mb-1 font-semibold">Email</label>
-          <input name="email" type="email" value={form.email} onChange={handleChange} required className="w-full border px-3 py-2 rounded" />
+          <input name="email" type="email" value={form.email} onChange={handleChange} required className="w-full px-3 py-2 border rounded" />
         </div>
         <div>
           <label className="block mb-1 font-semibold">Mobile</label>
-          <input name="mobile" value={form.mobile} onChange={handleChange} required className="w-full border px-3 py-2 rounded" />
+          <input name="mobile" value={form.mobile} onChange={handleChange} required className="w-full px-3 py-2 border rounded" />
         </div>
         <div>
           <label className="block mb-1 font-semibold">Country</label>
-          <select name="country" value={form.country} onChange={handleChange} required className="w-full border px-3 py-2 rounded">
+          <select name="country" value={form.country} onChange={handleChange} required className="w-full px-3 py-2 border rounded">
             <option value="">Select Country</option>
             {COUNTRIES.map(c => <option key={c.name} value={c.name}>{c.name}</option>)}
           </select>
         </div>
         <div>
           <label className="block mb-1 font-semibold">State</label>
-          <select name="state" value={form.state} onChange={handleChange} required className="w-full border px-3 py-2 rounded" disabled={!states.length}>
+          <select name="state" value={form.state} onChange={handleChange} required className="w-full px-3 py-2 border rounded" disabled={!states.length}>
             <option value="">Select State</option>
             {states.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
         <div>
           <label className="block mb-1 font-semibold">City</label>
-          <select name="city" value={form.city} onChange={handleChange} required className="w-full border px-3 py-2 rounded" disabled={!cities.length}>
+          <select name="city" value={form.city} onChange={handleChange} required className="w-full px-3 py-2 border rounded" disabled={!cities.length}>
             <option value="">Select City</option>
             {cities.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
-        <button type="submit" className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors font-semibold">Next</button>
-        {saved && <div className="text-green-600 mt-2">Saved!</div>}
+        <button type="submit" className="w-full py-2 font-semibold text-white transition-colors bg-black rounded hover:bg-gray-800">Next</button>
+     
       </form>
     </div>
   );

@@ -173,7 +173,7 @@ function Headers() {
                           <p className="text-xs text-gray-600 truncate">
                             {item.description}
                           </p>
-                          <p className="text-sm font-semibold">€{item.price}</p>
+                                                      <p className="text-sm font-semibold">₹{item.price}</p>
                         </div>
                         <div className="flex flex-col items-end space-y-1">
                           <button
@@ -214,7 +214,7 @@ function Headers() {
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-semibold">Total:</span>
                       <span className="font-semibold">
-                        €{getTotalPrice().toFixed(2)}
+                        ₹{getTotalPrice().toFixed(2)}
                       </span>
                     </div>
                     <Link href="/cart">

@@ -457,7 +457,7 @@ function collections() {
                       <p className="font-thin text-sm tablet:text-base mb-2">{product.name}</p>
                       <p className="font-thin text-sm tablet:text-base mb-2 text-gray-600">{product.description}</p>
                       <p className="text-sm tablet:text-base mb-4">
-                        <span className="font-bold">€{product.price}</span> / 50 g
+                        <span className="font-bold">₹{product.price}</span> / 50 g
                       </p>
                       <button
                         onClick={() => {
