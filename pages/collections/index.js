@@ -10,6 +10,7 @@ import Quality from "@/components/collections/Quality";
 import Caffein from "@/components/collections/Caffein";
 import Allerg from "@/components/collections/Allerg";
 import useCartStore from "../../store/cartStore";
+import toast from 'react-hot-toast';
 
 function collections() {
   const router = useRouter();
@@ -459,7 +460,10 @@ function collections() {
                         <span className="font-bold">€{product.price}</span> / 50 g
                       </p>
                       <button
-                        onClick={() => addToCart(product)}
+                        onClick={() => {
+                          addToCart(product);
+                          toast.success('product added in cart');
+                        }}
                         className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
                       >
                         Add to Cart

@@ -5,6 +5,7 @@ import { FiMinus, FiPlus, FiArrowLeft } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import useCartStore from "../../store/cartStore";
+import toast from 'react-hot-toast';
 
 function Cart() {
   const router = useRouter();
@@ -18,8 +19,8 @@ function Cart() {
   } = useCartStore();
 
   const handleCheckout = () => {
-    // Here you would typically redirect to a checkout page
-    alert("Proceeding to checkout...");
+    // Navigate to checkout page
+    router.push('/checkout');
   };
 
   if (cart.length === 0) {
@@ -99,7 +100,17 @@ function Cart() {
                   </div>
                   <div className="flex flex-col items-end space-y-2">
                     <button
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => {
+                        removeFromCart(item.id);
+                        toast('Product removed successfully', {
+                          style: {
+                            background: '#ef4444', // Tailwind red-500
+                            color: '#fff',
+                            fontWeight: 'bold',
+                          },
+                          icon: '🗑️',
+                        });
+                      }}
                       className="text-red-500 hover:text-red-700"
                     >
                       <RxCross2 className="text-lg" />

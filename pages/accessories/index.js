@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import useCartStore from "../../store/cartStore";
+import toast from 'react-hot-toast';
 
 function Accessories() {
   const router = useRouter();
@@ -75,14 +76,14 @@ function Accessories() {
           />
         </div>
         
-        <div className="w-full h-full pr-10 pl-10 mt-6">
+        <div className="w-full h-full pl-10 pr-10 mt-6">
           {/* breadcrumbs */}
-          <div className="w-full h-full uppercase mb-10">Home {pathname}</div>
+          <div className="w-full h-full mb-10 uppercase">Home {pathname}</div>
           
           {/* page title */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-4">Tea Accessories</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="mb-8 text-center">
+            <h1 className="mb-4 text-3xl font-bold">Tea Accessories</h1>
+            <p className="max-w-2xl mx-auto text-gray-600">
               Discover our collection of premium tea accessories to enhance your tea brewing experience. 
               From traditional teapots to modern infusers, we have everything you need.
             </p>
@@ -94,7 +95,7 @@ function Accessories() {
               {categories.map((category) => (
                 <button
                   key={category}
-                  className="px-4 py-2 border border-gray-300 rounded-full hover:bg-black hover:text-white transition-colors"
+                  className="px-4 py-2 transition-colors border border-gray-300 rounded-full hover:bg-black hover:text-white"
                 >
                   {category}
                 </button>
@@ -103,10 +104,10 @@ function Accessories() {
           </div>
 
           {/* main content */}
-          <div className="w-full h-full flex justify-center">
+          <div className="flex justify-center w-full h-full">
             <div className="grid grid-cols-1 w-[95%] h-full tablet:grid-cols-2 lg:grid-cols-3 gap-6">
               {accessories.map((product) => (
-                <div key={product.id} className="h-full w-full flex flex-col justify-center items-center mb-10 cursor-pointer hover:scale-105 transition-transform">
+                <div key={product.id} className="flex flex-col items-center justify-center w-full h-full mb-10 transition-transform cursor-pointer hover:scale-105">
                   <div className="relative w-full h-64">
                     <Image
                       alt={product.name}
@@ -116,14 +117,17 @@ function Accessories() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
-                  <div className="text-center mt-4">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">{product.category}</p>
-                    <p className="font-semibold text-lg tablet:text-xl mt-1">{product.name}</p>
-                    <p className="font-thin text-sm tablet:text-base text-gray-600 mt-1">{product.description}</p>
-                    <p className="text-lg tablet:text-xl font-bold mt-2">€{product.price}</p>
+                  <div className="mt-4 text-center">
+                    <p className="text-xs tracking-wide text-gray-500 uppercase">{product.category}</p>
+                    <p className="mt-1 text-lg font-semibold tablet:text-xl">{product.name}</p>
+                    <p className="mt-1 text-sm font-thin text-gray-600 tablet:text-base">{product.description}</p>
+                    <p className="mt-2 text-lg font-bold tablet:text-xl">€{product.price}</p>
                     <button
-                      onClick={() => addToCart(product)}
-                      className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
+                      onClick={() => {
+                        addToCart(product);
+                        toast.success('product added in cart');
+                      }}
+                      className="px-6 py-2 mt-4 text-white transition-colors bg-black rounded hover:bg-gray-800"
                     >
                       Add to Cart
                     </button>
