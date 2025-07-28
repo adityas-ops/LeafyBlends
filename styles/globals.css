@@ -23,3 +23,53 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+
+/* Mobile image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure proper aspect ratios on mobile */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Better mobile grid behavior */
+@media (max-width: 767px) {
+  .grid {
+    gap: 0.75rem;
+  }
+  
+  /* Ensure images don't overflow containers */
+  .relative img {
+    object-fit: cover;
+  }
+  
+  /* Better text sizing on mobile */
+  .text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Prevent image distortion */
+.object-cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+.object-contain {
+  object-fit: contain;
+  object-position: center;
+}

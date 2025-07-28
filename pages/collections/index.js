@@ -441,22 +441,22 @@ function collections() {
             )}
 
             <div className="tablet:flex-[75%] flex-[100%] flex justify-center ">
-              <div className="grid grid-cols-2 w-[95%] tablet:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 tablet:grid-cols-2 w-[95%] tablet:grid-cols-3 gap-4 tablet:gap-6">
                 {filteredProducts.map((product) => (
-                  <div key={product.id} className="flex flex-col items-center justify-start p-4 cursor-pointer hover:scale-105 transition-transform bg-white rounded-lg shadow-sm">
-                    <div className="relative w-full h-[250px] tablet:h-[300px] mb-4">
+                  <div key={product.id} className="flex flex-col items-center justify-start p-3 tablet:p-4 cursor-pointer hover:scale-105 transition-transform bg-white rounded-lg shadow-sm">
+                    <div className="relative w-full aspect-square mb-3 tablet:mb-4">
                       <Image
                         alt={product.name}
                         src={product.image}
                         fill
                         className="object-cover rounded-lg"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 400px"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 400px"
                       />
                     </div>
                     <div className="text-center w-full">
-                      <p className="font-thin text-sm tablet:text-base mb-2">{product.name}</p>
-                      <p className="font-thin text-sm tablet:text-base mb-2 text-gray-600">{product.description}</p>
-                      <p className="text-sm tablet:text-base mb-4">
+                      <p className="font-thin text-sm tablet:text-base mb-1 tablet:mb-2">{product.name}</p>
+                      <p className="font-thin text-xs tablet:text-sm mb-2 tablet:mb-2 text-gray-600">{product.description}</p>
+                      <p className="text-sm tablet:text-base mb-3 tablet:mb-4">
                         <span className="font-bold">₹{product.price}</span> / 50 g
                       </p>
                       <button
@@ -464,7 +464,7 @@ function collections() {
                           addToCart(product);
                           toast.success('product added in cart');
                         }}
-                        className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
+                        className="w-full bg-black text-white px-3 py-2 tablet:px-4 tablet:py-2 rounded hover:bg-gray-800 transition-colors text-sm tablet:text-base"
                       >
                         Add to Cart
                       </button>
