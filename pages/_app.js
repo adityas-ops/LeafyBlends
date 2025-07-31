@@ -4,6 +4,7 @@ import Header from '@/components/Headers'
 import Footers from '@/components/Footers'
 import { Toaster } from 'react-hot-toast'
 import Headers from '@/components/Headers'
+import MobileCartIcon from '@/components/MobileCartIcon'
 
 export default function App({ Component, pageProps }) {
   return(
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps }) {
     />
     <Headers/>
     <Component {...pageProps} />
+    <MobileCartIcon />
     <Footers/>
     </>
   )

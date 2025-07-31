@@ -130,7 +130,7 @@ function Headers() {
               <div className=" w-full text-[14px] text-start font-regular  flex justify-start ">
                 YOUR BAG
               </div>
-              <div className="w-full text-[12px] font-light text-start flex justify-start text-Outline ">
+              <div className="w-full text-[12px] text-rose-700 font-light text-start flex justify-start  ">
                 ({getTotalItems()}) Items have been added{" "}
               </div>
             </div>
